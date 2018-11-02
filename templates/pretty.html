@@ -1,28 +1,51 @@
 <html>
-    <head>
-          <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+   <head>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   </head>
+   <body>
+      <div  class="container">
+         <div>
+            <h1> Bear Classifier </h1>
+            <p> Using Transfer Learning, here is CNN that was trained to distinguish between a teddy bear, grizzly, black bear</p>
+         </div>
+          
+          <div>
+              <h3>Test </h3>
+            <p> To test the classifier, please provide a link to an image or upload your own. </p>
 
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+          </div>
+
+         <div class="row">
+            <form action="/classify" method="post" enctype="multipart/form-data" class="col s12">
+               <div class="input-field col s6">
+                   <input type="file" name="file">
+                   <input type="submit" class="btn" value="Upload Image">
+               </div>
 
 
-    </head>
+            </form>
+             
+         </div>          
+          
+          
+          
+         <div class="row">
+            <form action="/classify" method="get" class="col s12">
+               <div class="input-field col s6">
+                    <label for="url">Url</label>
+                    <input type="url" name="url" >
+               </div>
+                <div class="input-field col s6">
+                   <input type="submit" class="btn" value="Fetch and analyze image">
 
+                </div>
 
-<body>
-
-    <form action="/classify" method="post" enctype="multipart/form-data">
-                Select image to upload:
-                <input type="file" name="file">
-                <input type="submit" class="btn" value="Upload Image">
-    </form>
-            Or submit a URL:
-    <form action="/classify" method="get">
-                <input type="url" name="url">
-                <input type="submit" class="btn" value="Fetch and analyze image">
-    </form>
-
-</body>
-
+            </form>
+             
+         </div>
+      </div>
+   </body>
 </html>

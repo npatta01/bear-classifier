@@ -5,6 +5,7 @@ RUN apt update && \
 
 # Install pytorch and fastai
 RUN pip install torch_nightly -f https://download.pytorch.org/whl/nightly/cpu/torch_nightly.html
+ADD requirements.txt .
 RUN pip install -r requirements.txt
 
 # Install starlette and uvicorn
@@ -13,7 +14,7 @@ RUN pip install -r requirements.txt
 ADD . .
 
 # Run it once to trigger resnet download
-RUN python app.py
+RUN python app.py prepare
 
 EXPOSE 5000
 

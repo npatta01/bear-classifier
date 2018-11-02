@@ -54,15 +54,18 @@ def upload_file():
         url = flask.request.args.get("url")
         img = load_image_url(url)
     else:
-        bytes = flask.request.files['image'].read()
+        bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
     predictions = predict(img)
     return flask.jsonify(predictions=predictions)    
 
 @app.route('/')
 def index():
-    return flask.render_template('pretty.html')
+    return flask.render_template('index.html')
 
+@app.route('/pretty')
+def pretty():
+    return flask.render_template('pretty.html')
 
 CLASSES = sorted(["grizzly bear", "teddy bear", "black bear"])
 model = load_model(CLASSES)
@@ -70,7 +73,12 @@ model = load_model(CLASSES)
 
 if __name__ == '__main__':
     port = os.environ.get('PORT', 5000)
-    app.run(host='0.0.0.0', port=port)
+    if "prepare" not in sys.argv:
+        app.jinja_env.auto_reload = True
+        app.config['TEMPLATES_AUTO_RELOAD'] = True
+        app.run(debug=True, host='0.0.0.0', port=port)
+        #app.run(host='0.0.0.0', port=port)
+
     
     
     

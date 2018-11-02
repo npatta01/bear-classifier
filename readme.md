@@ -11,14 +11,19 @@ Setup
 ```
 wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 heroku container:login
-heroku create img-classifier
 ```
 
 ```
+APP_NAME="np-img-classifier"
+heroku create $APP_NAME
+
+heroku container:push web --app ${APP_NAME}
+
+
 heroku container:push web
 #new command
-heroku container:release web
-heroku open --app img-classifier
+heroku container:release web --app ${APP_NAME}
+heroku open --app $APP_NAME
 ```
 
 
