@@ -1,0 +1,5 @@
+fastai==1.0.*
+starlette==0.7.* 
+uvicorn==0.3.*
+python-multipart 
+aiohttp
